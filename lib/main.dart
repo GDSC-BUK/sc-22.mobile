@@ -8,7 +8,7 @@ void main() => runApp(const App());
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'RecoGram';
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
     Forum(),
     Settings(),
@@ -43,10 +42,14 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double paddingTop = MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      body: Center(
+      body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
+        padding: EdgeInsets.fromLTRB(0, paddingTop, 0, 0),
       ),
+      backgroundColor: Colors.grey[900],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[900],
         items: const <BottomNavigationBarItem>[

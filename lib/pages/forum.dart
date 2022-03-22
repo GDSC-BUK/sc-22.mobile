@@ -5,6 +5,9 @@ class Forum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Forum page");
+    return const Text(
+      "Forum page",
+      style: TextStyle(color: Colors.white),
+    );
   }
 }
