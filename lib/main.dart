@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import "pages/forum.dart";
-import "pages/settings.dart";
+import "package:recogram/pages/forum.dart";
+import "package:recogram/pages/settings.dart";
 
 void main() => runApp(const App());
 
