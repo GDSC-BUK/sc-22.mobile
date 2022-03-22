@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import "pages/forum.dart";
+import "pages/settings.dart";
+
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
@@ -28,14 +31,8 @@ class _HomeState extends State<Home> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Forum',
-      style: optionStyle,
-    ),
-    Text(
-      'Settings',
-      style: optionStyle,
-    ),
+    Forum(),
+    Settings(),
   ];
 
   void _onItemTapped(int index) {
