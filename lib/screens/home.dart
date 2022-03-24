@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import "package:recogram/pages/forum.dart";
-import "package:recogram/pages/settings.dart";
+import "package:recogram/screens/forum.dart";
+import "package:recogram/screens/settings.dart";
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
