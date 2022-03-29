@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recogram/screens/forum.dart';
+import 'package:recogram/screens/forum/dashboard.dart';
 
 import "package:recogram/screens/settings.dart";
 
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Container(),
+    const Dashboard(),
     const Forum(),
     const Settings(),
   ];
