@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recogram/screens/forum.dart';
 
-import "package:recogram/screens/forum.dart";
 import "package:recogram/screens/settings.dart";
 
 class Home extends StatefulWidget {
@@ -13,9 +13,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Forum(),
-    Settings(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    Container(),
+    const Forum(),
+    const Settings(),
   ];
 
   void _onItemTapped(int index) {
@@ -38,7 +39,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.grey[900],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.forum),
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
             label: 'Forum',
           ),
           BottomNavigationBarItem(
