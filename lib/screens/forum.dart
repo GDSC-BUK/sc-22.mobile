@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tags/flutter_tags.dart';
 import 'package:recogram/services/forum_service.dart';
 
 class Forum extends StatefulWidget {
@@ -44,12 +43,14 @@ class _ForumState extends State<Forum> {
             );
           }
           final List? postList = snapshot.data;
+          // ignore: unused_local_variable
           for (dynamic food in postList!) {
+            List<String> tags = ['Meditation', 'Relax', 'Brain'];
             forumPageItems.add(
               GestureDetector(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: const Color(0xFF252646),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   width: double.infinity,
@@ -91,7 +92,10 @@ class _ForumState extends State<Forum> {
                               ),
                             ],
                           ),
-                          const Icon(Icons.favorite_border),
+                          const Icon(
+                            Icons.favorite_border,
+                            color: Colors.red,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 15.0),
@@ -100,6 +104,7 @@ class _ForumState extends State<Forum> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -138,7 +143,7 @@ class _ForumState extends State<Forum> {
                         height: 40,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 2,
+                          itemCount: 3,
                           itemBuilder: ((context, index) {
                             return Container(
                               margin: const EdgeInsets.only(left: 8.0),
@@ -150,7 +155,7 @@ class _ForumState extends State<Forum> {
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
-                              child: const Text('hello'),
+                              child: Text(tags[index]),
                             );
                           }),
                         ),
@@ -161,7 +166,57 @@ class _ForumState extends State<Forum> {
               ),
             );
           }
-          return ListView(children: forumPageItems);
+          return Column(
+            children: [
+              SizedBox(
+                height: 650,
+                child: ListView(children: forumPageItems),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      onChanged: (value) {
+                        //Do something with the user input.
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Write Post',
+                        suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.attachment,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5.0),
+                  Container(
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF2740B0),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
         },
       ),
     );
