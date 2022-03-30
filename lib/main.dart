@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
-import 'package:recogram/pages/home.dart';
+import 'package:recogram/screens/auth/login.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +27,9 @@ class _App extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: _title, home: Home());
+    return const MaterialApp(
+      title: _title,
+      home: Signin(),
+    );
   }
 }
