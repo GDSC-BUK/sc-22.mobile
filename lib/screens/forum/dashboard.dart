@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recogram/shared/widget/post_card.dart';
 import 'package:recogram/shared/widget/primaryCard.dart';
 
 class Dashboard extends StatefulWidget {
@@ -25,7 +26,7 @@ class _DashboardState extends State<Dashboard> {
                   radius: 35,
                   child: Icon(
                     Icons.person,
-                    size: 30.0,
+                    size: 35.0,
                   ),
                 ),
                 IconButton(
@@ -92,27 +93,45 @@ class _DashboardState extends State<Dashboard> {
                     Colors.blue,
                     Colors.blueGrey
                   ];
+                  List post = [34, 22, 11];
                   return PrimaryCard(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Drug Abuse',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 19,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Drug Abuse',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w700,
                           ),
-                          SizedBox(height: 8.0),
-                          Text(
-                            '39 Post',
-                            style:
-                                TextStyle(color: Colors.white60, fontSize: 16),
+                        ),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          '${post[index]} Post',
+                          style: const TextStyle(
+                            color: Colors.white60,
+                            fontSize: 16,
                           ),
-                        ],
-                      ),
-                      color: colors[index]);
+                        ),
+                      ],
+                    ),
+                    color: colors[index],
+                  );
+                }),
+              ),
+            ),
+            const SizedBox(height: 25.0),
+            const Text(
+              'Trending topics',
+              style: TextStyle(fontSize: 23, color: Colors.white),
+            ),
+            SizedBox(
+              height: 230,
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: ((context, index) {
+                  return const PostCard();
                 }),
               ),
             ),
