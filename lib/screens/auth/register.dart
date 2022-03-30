@@ -11,23 +11,12 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  TextEditingController fName = TextEditingController();
-  TextEditingController lName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  TextEditingController cPassword = TextEditingController();
-  TextEditingController phone = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // List<TextEditingController> controllers = [
-    //   fName,
-    //   lName,
-    //   email,
-    //   password,
-    //   cPassword,
-    //   phone,
-    // ];
     return Scaffold(
       appBar: AppBar(elevation: 0, backgroundColor: Colors.grey[900]),
       backgroundColor: Colors.grey[900],
@@ -54,47 +43,10 @@ class _SignupState extends State<Signup> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
-                    controller: fName,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.person_outline, color: Colors.grey),
-                      hintText: 'First Name',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.name,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: lName,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.person_outline, color: Colors.grey),
-                      hintText: 'Last Name',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.name,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
                     controller: email,
                     decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.email_outlined, color: Colors.grey),
-                      hintText: 'Email',
+                      prefixIcon: const Icon(Icons.email, color: Colors.grey),
+                      hintText: 'E-Mail',
                       hintStyle: const TextStyle(color: Colors.grey),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
@@ -105,24 +57,6 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: phone,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.phone_outlined, color: Colors.grey),
-                      hintText: 'Phone',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 15.0),
                   TextFormField(
@@ -145,7 +79,7 @@ class _SignupState extends State<Signup> {
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
-                    controller: cPassword,
+                    controller: confirmPassword,
                     obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(
