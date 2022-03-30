@@ -93,8 +93,8 @@ class _ForumState extends State<Forum> {
                             ],
                           ),
                           const Icon(
-                            Icons.favorite_border,
-                            color: Colors.red,
+                            Icons.bookmark_outline,
+                            color: Colors.grey,
                           ),
                         ],
                       ),
