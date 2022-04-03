@@ -37,7 +37,7 @@ class Client {
   }
 
   // DELETE
-  delete(String url, Map body, Map<String, String> headers) async {
-    return await client.delete(makeURL(url), body: body, headers: headers);
+  delete(String url, Map<String, String> headers) async {
+    return await client.delete(makeURL(url), headers: headers);
   }
 }
