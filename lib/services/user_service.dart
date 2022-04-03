@@ -12,7 +12,7 @@ class User {
   String logoutUrl = "/logout/";
 
   // request headers, get `Authorizarion` token if available
-  var headers = {
+  Map<String, String> headers = {
     "Content-Type": "application/json",
     "Authorization": "Token some-random-token"
   };
