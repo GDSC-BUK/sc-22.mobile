@@ -169,7 +169,7 @@ class _ForumState extends State<Forum> {
           return Column(
             children: [
               SizedBox(
-                height: 650,
+                height: 550,
                 child: ListView(children: forumPageItems),
               ),
               Row(

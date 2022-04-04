@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recogram/shared/widget/post_card.dart';
-import 'package:recogram/shared/widget/primaryCard.dart';
+import 'package:recogram/shared/widget/primary_card.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);

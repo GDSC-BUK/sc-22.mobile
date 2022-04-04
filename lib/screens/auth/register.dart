@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import '../../services/service_injector/service_injector.dart';
 import '../../shared/widget/primary_button.dart';
 import 'login.dart';
@@ -11,23 +15,12 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  TextEditingController fName = TextEditingController();
-  TextEditingController lName = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController cPassword = TextEditingController();
-  TextEditingController phone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // List<TextEditingController> controllers = [
-    //   fName,
-    //   lName,
-    //   email,
-    //   password,
-    //   cPassword,
-    //   phone,
-    // ];
     return Scaffold(
       appBar: AppBar(elevation: 0, backgroundColor: Colors.grey[900]),
       backgroundColor: Colors.grey[900],
@@ -54,11 +47,12 @@ class _SignupState extends State<Signup> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
-                    controller: fName,
+                    controller: username,
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       prefixIcon:
                           const Icon(Icons.person_outline, color: Colors.grey),
-                      hintText: 'First Name',
+                      hintText: 'Username',
                       hintStyle: const TextStyle(color: Colors.grey),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
@@ -69,65 +63,12 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
                     keyboardType: TextInputType.name,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: lName,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.person_outline, color: Colors.grey),
-                      hintText: 'Last Name',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.name,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: email,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.email_outlined, color: Colors.grey),
-                      hintText: 'Email',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: phone,
-                    decoration: InputDecoration(
-                      prefixIcon:
-                          const Icon(Icons.phone_outlined, color: Colors.grey),
-                      hintText: 'Phone',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
-                    keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 15.0),
                   TextFormField(
                     controller: password,
                     obscureText: true,
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       prefixIcon:
                           const Icon(Icons.lock_outline, color: Colors.grey),
@@ -147,6 +88,7 @@ class _SignupState extends State<Signup> {
                   TextFormField(
                     controller: cPassword,
                     obscureText: true,
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.lock_outline,
@@ -166,7 +108,25 @@ class _SignupState extends State<Signup> {
                   ),
                   const SizedBox(height: 30),
                   PrimaryButton(
-                    onTap: (startLoading, stopLoading, btnState) async {},
+                    onTap: (startLoading, stopLoading, btnState) async {
+                      startLoading();
+                      await si.authService
+                          .registerUser(
+                              username: username.text, password: password.text)
+                          .then((value) {
+                        if (value == true) {
+                          stopLoading();
+                          username.clear();
+                          password.clear();
+                          si.dialogService
+                              .showToast('${username.text} has registered');
+                        } else {
+                          stopLoading();
+                          si.dialogService
+                              .showToast('Failed to register ${username.text}');
+                        }
+                      });
+                    },
                     buttonTitle: 'Register',
                   )
                 ],

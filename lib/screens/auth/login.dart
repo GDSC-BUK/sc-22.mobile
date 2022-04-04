@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:recogram/screens/home.dart';
+import 'package:recogram/shared/model/user_model.dart';
 import 'package:recogram/shared/widget/primary_button.dart';
 
 import '../../services/service_injector/service_injector.dart';
+import '../home.dart';
 import 'register.dart';
 
 class Signin extends StatefulWidget {
@@ -14,7 +15,9 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
-  TextEditingController email = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -46,12 +49,14 @@ class _SigninState extends State<Signin> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
+                    controller: username,
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.person_outline,
                         color: Colors.grey,
                       ),
-                      hintText: 'Email',
+                      hintText: 'Username',
                       hintStyle: const TextStyle(color: Colors.grey),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
@@ -65,6 +70,8 @@ class _SigninState extends State<Signin> {
                   ),
                   const SizedBox(height: 15.0),
                   TextFormField(
+                    controller: password,
+                    style: const TextStyle(color: Colors.white),
                     obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon:
@@ -99,8 +106,23 @@ class _SigninState extends State<Signin> {
                   ),
                   const SizedBox(height: 30),
                   PrimaryButton(
-                    onTap: (startLoading, stopLoading, btnState) {
-                      si.routerService.nextRoute(context, const Home());
+                    onTap: (startLoading, stopLoading, btnState) async {
+                      startLoading();
+                      await si.authService
+                          .loginUser(
+                        username: username.text,
+                        password: password.text,
+                      )
+                          .then((value) {
+                        if (value.runtimeType == UserModel) {
+                          stopLoading();
+                          si.routerService.nextRoute(context, const Home());
+                        } else {
+                          si.dialogService
+                              .showToast(value.toString().split(':')[1]);
+                          stopLoading();
+                        }
+                      });
                     },
                     buttonTitle: 'Login',
                   )
